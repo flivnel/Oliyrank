@@ -42,5 +42,40 @@ This is the first serious attempt to bring **QS-style ranking** to Uzbekistan, b
 
 ---
 
-## 📂 Project Structure
+## 📈 Roadmap
 
+### Phase 1 — MVP
+- [ ] Base UI and routing  
+- [ ] Database schema  
+- [ ] University list (20 major ones)  
+- [ ] Reviews + ratings  
+- [ ] Dark/light mode  
+- [ ] Multilingual support  
+
+### Phase 2 — Launch
+- [ ] Add 50+ institutions  
+- [ ] Compare tool  
+- [ ] Search filters  
+- [ ] Scholarship database  
+- [ ] Analytics + admin panel  
+
+### Phase 3 — Expansion
+- [ ] Mobile app  
+- [ ] AI recommendation assistant  
+- [ ] Alumni success index  
+- [ ] Nationwide dataset  
+- [ ] Partnership integrations  
+
+---
+
+## 🧠 Creator
+
+Built with ambition, obsession, and painfully high standards by **Vincent**.  
+This project aims to raise the bar for educational transparency in Uzbekistan.
+
+---
+
+## 📬 Contact
+
+For questions or contributions:  
+**zartsaworks@gmail.com**
