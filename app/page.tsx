@@ -1,10 +1,12 @@
 import "../scss/main.scss"
-import Header from './layout/header/page';
 
+// app/page.tsx
 export default function HomePage() {
   return (
     <div className="wrapper">
-      <Header />
+      {/* Keyin bu yerga hero, search va boshqa bloklarni qo‘shamiz */}
+      Home page
     </div>
   );
 }
+
