@@ -1,6 +1,11 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "../scss/main.scss"; // 🔹 SCSS shu yerda ulanyapti
+
+import Header from "./layout/header/page";
+import Footer from "./layout/footer/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,7 +17,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "OliyRank",
   description: "Ranking platform for universities in Uzbekistan",
 };
@@ -23,11 +28,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-slate-950 text-slate-100 antialiased">
-        <main className="min-h-[calc(100vh-56px)]">
-          {children}
-        </main>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+    >
+      <body className="bg-slate-950 text-slate-100 antialiased flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow">{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -1,10 +1,10 @@
 // Base
-@import 'base/variables';
-@import 'base/reset';
+@use 'base/variables' as *;
+@use 'base/reset' as *;
 
 // Layout
-@import 'layout/header';
-@import 'layout/footer';
+@use 'layout/header' as *;
+@use 'layout/footer' as *;
 
 // Pages
-// @import 'pages/contact';
+// @use 'pages/contact' as *;

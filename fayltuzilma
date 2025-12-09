@@ -1,0 +1,44 @@
+oliyrank/
+│
+├── app/
+│   ├── components/
+|       ├── footer/
+|           ├── page.tsx/
+|       ├── header/
+|           ├── page.tsx/
+|           ├── navbar.tsx/
+│   ├── layout/
+|       ├── footer/
+|           ├── page.tsx/
+|       ├── header/
+|           ├── page.tsx/
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── page.tsx
+
+├── components/
+├── public/
+├── scss/
+|   ├── base/
+|       ├── _base.scss
+|       ├── _reset.scss
+|       ├── _variables.scss
+|   ├── components/
+|   ├── layout/
+|       ├── _header.scss
+|       ├── _footer.scss
+|   ├── pages/
+|   ├── main.scss
+├── .gitignore
+├── eslint.config.mjs
+├── next.env.d.ts
+├── next-sitemap.config.js
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── README.md
+├── tsconfig.json
+
+
+
