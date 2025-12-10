@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/rankings", label: "Rankings" },
+  { href: "/about", label: "About" },
   { href: "/news", label: "News" },
   { href: "/faq", label: "FAQs" },
   { href: "/contact", label: "Contact us" },
@@ -68,12 +69,12 @@ export default function Header() {
 
           {/* Desktop auth buttons */}
           <div className="header-button">
-            <button className="header-signin-btn">
+            <Link href="/signin" className="header-signin-btn">
               Sign In
-            </button>
-            <button className="header-signup-btn">
+            </Link>
+            <Link href="/signup" className="header-signup-btn">
               Sign Up
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -100,6 +101,7 @@ export default function Header() {
               Sign Up
             </button>
           </div>
+
         </div>
       </div>
     </>

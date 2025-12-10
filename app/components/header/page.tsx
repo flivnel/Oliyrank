@@ -1,16 +1,29 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
     <nav className="header-navbar">
-      <Link href="/" className="header-navbar-items">Home</Link>
-      <Link href="/rankings" className="header-navbar-items">Rankings</Link>
-      <Link href="/news" className="header-navbar-items">News</Link>
-      <Link href="/faq" className="header-navbar-items">FAQs</Link>
-      <Link href="/contact" className="header-navbar-items">Contact us</Link>
+      <Link href="/" className="header-navbar-items">
+        Home
+      </Link>
+      <Link href="/rankings" className="header-navbar-items">
+        Rankings
+      </Link>
+      <Link href="/about" className="header-navbar-items">
+        About
+      </Link>
+      <Link href="/news" className="header-navbar-items">
+        News
+      </Link>
+      <Link href="/faqs" className="header-navbar-items">
+        FAQs
+      </Link>
+      <Link href="/contact" className="header-navbar-items">
+        Contact us
+      </Link>
     </nav>
   );
 };
@@ -19,67 +32,91 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // change header when scrolling
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
+      const isScrolledNow = window.scrollY > 10;
+      if (isScrolledNow !== scrolled) {
+        setScrolled(isScrolledNow);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [scrolled]);
 
+  // lock body scroll when menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isMobileMenuOpen]);
+
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsMobileMenuOpen((prev) => !prev);
   };
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <>
-      <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+      <header className={`header ${scrolled ? "scrolled" : ""}`}>
         <div className="header-wrap">
           <div className="header-logo">
             <Link href="/">OliyRank</Link>
           </div>
 
+          {/* Desktop nav */}
           <Navbar />
 
+          {/* Desktop auth buttons */}
           <div className="header-button">
-            <button className="header-signin-btn">
+            <Link href="/signin" className="header-signin-btn">
               Sign In
-            </button>
-            <button className="header-signup-btn">
+            </Link>
+            <Link href="/signup" className="header-signup-btn">
               Sign Up
-            </button>
+            </Link>
           </div>
 
-          <button 
-            className="mobile-menu-btn" 
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-          >
-            ☰
-          </button>
+          {/* Mobile burger */}
+          <div className="mobile-menu-btn">
+            <button
+              className="mobile-menu-toggle"
+              onClick={toggleMobileMenu}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMobileMenuOpen ? "✕" : "☰"}
+            </button>
+          </div>
         </div>
       </header>
 
       {/* Mobile Menu */}
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
-        <div className="mobile-menu-items">
-          <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-          <Link href="/rankings" onClick={() => setIsMobileMenuOpen(false)}>Rankings</Link>
-          <Link href="/news" onClick={() => setIsMobileMenuOpen(false)}>News</Link>
-          <Link href="/faq" onClick={() => setIsMobileMenuOpen(false)}>FAQs</Link>
-          <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact us</Link>
-        </div>
-        <div className="mobile-auth-buttons">
-          <button className="mobile-signin-btn">
-            Sign In
-          </button>
-          <button className="mobile-signup-btn">
-            Sign Up
-          </button>
+      <div className={`mobile-menu ${isMobileMenuOpen ? "active" : ""}`}>
+        <div className="mobile-menu-inner">
+          {/* Vertical nav */}
+          <Navbar />
+
+          {/* Auth buttons */}
+          <div className="mobile-auth-buttons">
+            <Link
+              href="/signin"
+              className="mobile-signin-btn"
+              onClick={closeMobileMenu}
+            >
+              Sign In
+            </Link>
+            <Link
+              href="/signup"
+              className="mobile-signup-btn"
+              onClick={closeMobileMenu}
+            >
+              Sign Up
+            </Link>
+          </div>
         </div>
       </div>
     </>

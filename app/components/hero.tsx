@@ -25,7 +25,7 @@ export default function Hero() {
             <Link href="/rankings" className="btn btn--primary">
               Reytinglarni ko‘rish
             </Link>
-            <Link href="/layout/about" className="btn btn--ghost">
+            <Link href="/about" className="btn btn--ghost">
               Qanday ishlashi haqida bilib oling
             </Link>
           </div>
