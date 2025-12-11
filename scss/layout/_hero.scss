@@ -1,54 +1,111 @@
+@use '../base/variables' as *;
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .hero {
-  padding: 4rem 1.5rem 5rem;
-  background: radial-gradient(circle at top left, #273bff33, transparent 55%),
-              #050814;
+  padding: 6rem 1.5rem 8rem;
+  background:
+    radial-gradient(circle at top left, rgba(39, 59, 255, 0.15), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(99, 179, 237, 0.1), transparent 50%),
+    #050814;
+  background-size: 200% 200%;
+  animation: gradient-move 15s ease infinite;
   color: #f5f7ff;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  }
 
   &__inner {
     max-width: 1120px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: 3rem;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 4rem;
     align-items: center;
   }
 
   &__content {
     max-width: 640px;
+    z-index: 2;
   }
 
   &__eyebrow {
     font-size: 0.85rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    opacity: 0.8;
-    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: $primary-light; // using variable
+    margin-bottom: 1rem;
+    opacity: 0.9;
   }
 
   &__title {
-    font-size: clamp(2.1rem, 3vw + 1rem, 3.3rem);
+    font-size: clamp(2.5rem, 4vw + 1rem, 4rem);
     line-height: 1.1;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+
+    background: linear-gradient(to right, #fff, #cbd5e0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   &__title-highlight {
     display: block;
-    color: #6b8bff;
+    background: linear-gradient(to right, #6b8bff, #9f7aea);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   &__subtitle {
-    font-size: 0.98rem;
-    line-height: 1.6;
-    opacity: 0.9;
-    margin-bottom: 1.6rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+    max-width: 90%;
   }
 
   &__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
 
   &__meta {
@@ -59,34 +116,47 @@
     opacity: 0.85;
 
     span {
-      padding: 0.4rem 0.7rem;
+      padding: 0.4rem 0.8rem;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(4px);
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
     }
   }
 
   &__visual {
     display: flex;
     justify-content: flex-end;
+    perspective: 1000px;
   }
 
   &__card {
-    background: linear-gradient(135deg, #111827, #020617);
-    border-radius: 1rem;
-    padding: 1.25rem 1.5rem;
-    border: 1px solid rgba(148, 163, 184, 0.4);
-    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 1.5rem;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 20px 40px -10px rgba(0, 0, 0, 0.5);
     width: 100%;
-    max-width: 320px;
+    max-width: 380px;
+    animation: float 6s ease-in-out infinite;
   }
 
   &__card-label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    opacity: 0.75;
-    margin-bottom: 0.75rem;
+    letter-spacing: 0.15em;
+    color: $primary-light;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
   }
 
   &__rank-list {
@@ -96,25 +166,27 @@
 
     li {
       display: grid;
-      grid-template-columns: 1.2rem 1fr auto;
-      gap: 0.5rem;
+      grid-template-columns: 1.5rem 1fr auto;
+      gap: 0.75rem;
       align-items: center;
-      font-size: 0.9rem;
-      padding: 0.4rem 0;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      font-size: 0.95rem;
+      padding: 0.6rem 0.5rem;
+      border-radius: 0.5rem;
+      transition: background 0.2s;
 
-      &:last-child {
-        border-bottom: none;
+      &:hover {
+        background: rgba(255, 255, 255, 0.05);
       }
 
       span:first-child {
-        font-weight: 600;
-        color: #a5b4fc;
+        font-weight: 700;
+        color: #fbbf24; // gold for rank
+        font-family: monospace;
       }
 
       span:last-child {
-        font-variant-numeric: tabular-nums;
-        opacity: 0.9;
+        font-weight: 600;
+        color: #a5b4fc;
       }
     }
   }
@@ -141,7 +213,7 @@
 }
 
 .btn--primary {
-  background:  #3b5cffa8;
+  background: #3b5cffa8;
   box-shadow: 0 3px 9px rgba(0, 140, 255, 0.35);
   font-weight: 800;
   border-radius: 5px;
@@ -157,7 +229,7 @@
 .btn--primary,
 .btn--ghost {
   cursor: pointer;
-  transition: 
+  transition:
     transform 0.15s ease,
     box-shadow 0.15s ease,
     background 0.15s ease,
@@ -183,13 +255,14 @@
 }
 
 @media (max-width: 768px) {
+
   .btn--primary,
   .btn--ghost {
-    padding: 14px 18px;       // Bigger taps
-    width: 100%;              // Stack like apps
+    padding: 14px 18px; // Bigger taps
+    width: 100%; // Stack like apps
     text-align: center;
-    font-size: 0.95rem;       // Cleaner on small screens
-    border-radius: 10px;      // Softer = modern
+    font-size: 0.95rem; // Cleaner on small screens
+    border-radius: 10px; // Softer = modern
   }
 
   .hero__actions {
@@ -199,6 +272,7 @@
 }
 
 @media (max-width: 420px) {
+
   .btn--primary,
   .btn--ghost {
     font-size: 0.9rem;

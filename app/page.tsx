@@ -1,6 +1,6 @@
 import "../scss/main.scss"
-import Hero from "../app/components/hero"
-import ExampleCards from "../app/components/exampleCards";
+import Hero from "../components/home/Hero";
+import ExampleCards from "../components/home/ExampleCards";
 
 // app/page.tsx
 export default function HomePage() {
