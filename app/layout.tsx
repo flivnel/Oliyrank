@@ -6,6 +6,7 @@ import "../scss/main.scss"; // 🔹 SCSS shu yerda ulanyapti
 
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
+export const dynamic = "force-dynamic";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
