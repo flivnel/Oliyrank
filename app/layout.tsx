@@ -1,13 +1,9 @@
-```
-"use client";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "../scss/main.scss"; // SCSS imports
-
-import Header from "./layout/header/page";
-import Footer from "./layout/footer/page";
-import { usePathname } from "next/navigation";
+import LayoutContent from "@/components/layout/LayoutContent";
+import { auth } from "@/auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,24 +20,23 @@ export const metadata: Metadata = {
   description: "Ranking platform for universities in Uzbekistan",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  const isAdmin = pathname.startsWith("/admin");
+  const session = await auth();
+
   return (
     <html
       lang="en"
-      className={`${ geistSans.variable } ${ geistMono.variable } `}
+      className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body className="bg-slate-950 text-slate-100 antialiased flex flex-col min-h-screen">
-        {!isAdmin && <Header />}
-        <main className="flex-grow">{children}</main>
-        {!isAdmin && <Footer />}
+        <LayoutContent user={session?.user}>
+          {children}
+        </LayoutContent>
       </body>
     </html>
   );
 }
-```
