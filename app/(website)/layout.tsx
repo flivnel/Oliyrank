@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Header from "../layout/header/page"; // Adjusted path
-import Footer from "../layout/footer/page"; // Adjusted path
+import Header from "../../components/layout/Header"; // Adjusted path
+import Footer from "../../components/layout/Footer"; // Adjusted path
 
 export const metadata: Metadata = {
     title: "OliyRank",
